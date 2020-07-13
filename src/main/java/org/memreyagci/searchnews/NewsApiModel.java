@@ -3,12 +3,6 @@ package org.memreyagci.searchnews;
 import java.util.ArrayList;
 
 public class NewsApiModel {
-    private final String keywords = "q+";
-    private final String dateFrom = "from=";
-    private final String dateTo = "to=";
-    private final String sortBy = "sortBY=";
-    private final String domains = "domains=";
-    private final String languages = "language=";
 
     private String providedKeyword;
     private String providedDateFrom;
