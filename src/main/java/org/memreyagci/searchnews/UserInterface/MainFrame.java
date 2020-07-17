@@ -24,14 +24,4 @@ public class MainFrame extends JFrame {
         this.setVisible(true);
     }
 
-//    public String searchButtonActionListener() {
-//        String keywordValues;
-//        searchPanel.searchButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//            }
-//        });
-//        return keywordValues;
-//    }
 }

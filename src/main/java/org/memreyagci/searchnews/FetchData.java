@@ -21,11 +21,12 @@ public class FetchData {
     public FetchData() {
     }
 
+
+    // TODO : Get the api key from user when the application is first run.
     public String getApiKey() {
         File apiKeyFile = new File(System.getProperty("user.dir") + "/src/main/java/org/memreyagci/searchnews/IgnoreThis/api_key.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(apiKeyFile));
-            // TODO : apiKey will be provided by the user.
             while ((apiKey = br.readLine()) != null) return apiKey;
             br.close();
         }

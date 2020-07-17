@@ -1,7 +1,5 @@
 package org.memreyagci.searchnews;
 
-import java.util.ArrayList;
-
 public class NewsApiModel {
 
     private String providedKeyword;
