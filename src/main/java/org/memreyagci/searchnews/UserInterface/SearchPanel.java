@@ -16,6 +16,7 @@ import java.util.Date;
 public class SearchPanel extends JPanel {
     NewsApiModel newsApiModel = new NewsApiModel();
     FetchData fetchData = new FetchData();
+    GridBagConstraints gbc = new GridBagConstraints();
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     // TODO: Search about setLabelFor method.
@@ -42,37 +43,56 @@ public class SearchPanel extends JPanel {
     JButton searchButton = new JButton("SEARCH");
 
     public SearchPanel() throws HeadlessException {
-        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.setLayout(new GridBagLayout());
         InitializeComponents();
         SetOnClickListeners();
     }
 
     public void InitializeComponents() {
-        this.add(keywordsLabel);
-        this.add(keywordsTextField);
-        this.add(sourcesLabel);
-        this.add(sourcesTextField);
-        this.add(languagesLabel);
-        this.add(languagesTextField);
-        this.add(titleLabel);
-        this.add(titleTextField);
-        this.add(datesFromLabel);
-        this.add(datesFromJDatePickerImpl);
-        this.add(datesToLabel);
-        this.add(datesToDatePicker);
-        this.add(searchButton);
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        this.add(keywordsLabel, gbc);
+        gbc.gridy++;
+        this.add(sourcesLabel, gbc);
+        gbc.gridy++;
+        this.add(languagesLabel, gbc);
+        gbc.gridy++;
+        this.add(titleLabel, gbc);
+        gbc.gridy++;
+        this.add(datesFromLabel, gbc);
+        gbc.gridy++;
+        this.add(datesToLabel, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.add(keywordsTextField, gbc);
+        gbc.gridy++;
+        this.add(sourcesTextField, gbc);
+        gbc.gridy++;
+        this.add(languagesTextField, gbc);
+        gbc.gridy++;
+        this.add(titleTextField, gbc);
+        gbc.gridy++;
+        this.add(datesFromJDatePickerImpl, gbc);
+        gbc.gridy++;
+        this.add(datesToDatePicker, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.gridwidth = 3;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.add(searchButton, gbc);
     }
 
     // Sets onClickListeners
     public void SetOnClickListeners() {
-        searchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //newsApiModel.setProvidedKeyword(getTextFieldValues());
-                setNewsApiModel();
-                // TODO: fetchData.fetchNews(newsApiModel);
-                fetchData.FetchNews(newsApiModel);
-            }
+        searchButton.addActionListener(e -> {
+            //newsApiModel.setProvidedKeyword(getTextFieldValues());
+            setNewsApiModel();
+            // TODO: fetchData.fetchNews(newsApiModel);
+            fetchData.FetchNews(newsApiModel);
         });
     }
 
@@ -91,15 +111,5 @@ public class SearchPanel extends JPanel {
         return keywordsTextField.getText();
     }
 
-//    void OnClickSearchButton(ActionListener actionListener) {
-//        searchButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                //newsApiModel.setProvidedKeyword(getTextFieldValues());
-//                setNewsApiModel();
-//                // TODO: fetchData.fetchNews(newsApiModel);
-//                fetchData.FetchNews(newsApiModel);
-//            }
-//        });
     }
 
