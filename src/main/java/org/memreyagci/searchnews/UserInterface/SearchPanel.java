@@ -8,10 +8,9 @@ import org.memreyagci.searchnews.NewsApiModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Enumeration;
 
 public class SearchPanel extends JPanel {
     NewsApiModel newsApiModel = new NewsApiModel();
@@ -19,65 +18,89 @@ public class SearchPanel extends JPanel {
     GridBagConstraints gbc = new GridBagConstraints();
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    // TODO: Search about setLabelFor method.
-    JLabel keywordsLabel = new JLabel("keywords:");
+
+    // Components of the SearchPanel
+    JLabel keywordsLabel = new JLabel("Keywords:");
     JTextField keywordsTextField = new JTextField();
 
-    JLabel languagesLabel = new JLabel("languages:");
-    JTextField languagesTextField = new JTextField();
-
-    JLabel titleLabel = new JLabel("title");
+    JLabel titleLabel = new JLabel("Title");
     JTextField titleTextField = new JTextField();
 
-    JLabel datesFromLabel = new JLabel("From:");
+    JLabel domainsLabel = new JLabel("Domains:");
+    JTextField domainsTextField = new JTextField();
+
+    JLabel languagesLabel = new JLabel("Languages:");
+    JTextField languagesTextField = new JTextField();
+
+    JLabel datesFromLabel = new JLabel("From the date of:");
     JDatePanelImpl datesFromJDatePanelImpl = new JDatePanelImpl(new UtilDateModel());
     JDatePickerImpl datesFromJDatePickerImpl = new JDatePickerImpl(datesFromJDatePanelImpl);
 
-    JLabel datesToLabel = new JLabel("To:");
+    JLabel datesToLabel = new JLabel("To the date of:");
     JDatePanelImpl datesToJDatePanelImpl = new JDatePanelImpl(new UtilDateModel());
     JDatePickerImpl datesToDatePicker = new JDatePickerImpl(datesToJDatePanelImpl);
 
-    JLabel sourcesLabel = new JLabel("source:");
-    JTextField sourcesTextField = new JTextField();
+    JLabel sortByLabel = new JLabel("Sort by:");
+    JPanel radioButtonJPanel = new JPanel();
+    ButtonGroup radioButtonGroup = new ButtonGroup();
+    JRadioButton sortByRelevancyRadioButton = new JRadioButton("relevancy");
+    JRadioButton sortByPopularityRadioButton = new JRadioButton("popularity");
+    JRadioButton sortByPublishDateRadioButton = new JRadioButton("publish date");
 
     JButton searchButton = new JButton("SEARCH");
 
     public SearchPanel() throws HeadlessException {
         this.setLayout(new GridBagLayout());
         InitializeComponents();
-        SetOnClickListeners();
+        SetActionListeners();
     }
 
+    // Adding components to the layout and setting their places.
     public void InitializeComponents() {
-        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.insets = new Insets(5, 10, 5, 10);
         gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
         this.add(keywordsLabel, gbc);
         gbc.gridy++;
-        this.add(sourcesLabel, gbc);
-        gbc.gridy++;
-        this.add(languagesLabel, gbc);
-        gbc.gridy++;
         this.add(titleLabel, gbc);
+        gbc.gridy++;
+        this.add(domainsLabel, gbc);
         gbc.gridy++;
         this.add(datesFromLabel, gbc);
         gbc.gridy++;
         this.add(datesToLabel, gbc);
+        gbc.gridy++;
+        this.add(languagesLabel, gbc);
+        gbc.gridy++;
+        this.add(sortByLabel, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         this.add(keywordsTextField, gbc);
         gbc.gridy++;
-        this.add(sourcesTextField, gbc);
-        gbc.gridy++;
-        this.add(languagesTextField, gbc);
-        gbc.gridy++;
         this.add(titleTextField, gbc);
+        gbc.gridy++;
+        this.add(domainsTextField, gbc);
         gbc.gridy++;
         this.add(datesFromJDatePickerImpl, gbc);
         gbc.gridy++;
         this.add(datesToDatePicker, gbc);
+        gbc.gridy++;
+        this.add(languagesTextField, gbc);
+
+        radioButtonGroup.add(sortByRelevancyRadioButton);
+        radioButtonGroup.add(sortByPopularityRadioButton);
+        radioButtonGroup.add(sortByPublishDateRadioButton);
+        radioButtonJPanel.add(sortByRelevancyRadioButton);
+        radioButtonJPanel.add(sortByPopularityRadioButton);
+        radioButtonJPanel.add(sortByPublishDateRadioButton);
+        sortByRelevancyRadioButton.setSelected(true);
+
+        gbc.insets = new Insets(5, 0, 5, 0);
+        gbc.gridy++;
+        this.add(radioButtonJPanel, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 7;
@@ -86,12 +109,22 @@ public class SearchPanel extends JPanel {
         this.add(searchButton, gbc);
     }
 
-    // Sets onClickListeners
-    public void SetOnClickListeners() {
+    // Source: https://rendicahya.wordpress.com
+    String getSelectedRadioButtonText(ButtonGroup buttonGroup) {
+        for (Enumeration buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = (AbstractButton) buttons.nextElement();
+
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+        return null;
+    }
+
+    // Sets ActionListeners
+    public void SetActionListeners() {
         searchButton.addActionListener(e -> {
-            //newsApiModel.setProvidedKeyword(getTextFieldValues());
             setNewsApiModel();
-            // TODO: fetchData.fetchNews(newsApiModel);
             fetchData.FetchNews(newsApiModel);
         });
     }
@@ -103,13 +136,12 @@ public class SearchPanel extends JPanel {
         Date selectedToDate = (Date) datesFromJDatePickerImpl.getModel().getValue();
 
         newsApiModel.setProvidedKeyword(keywordsTextField.getText());
+        newsApiModel.setProvidedTitle(titleTextField.getText());
+        newsApiModel.setProvidedDomain(domainsTextField.getText());
         newsApiModel.setProvidedDateFrom(simpleDateFormat.format(selectedFromDate));
         newsApiModel.setProvidedDateTo(simpleDateFormat.format(selectedToDate));
+        newsApiModel.setProvidedSortBy(getSelectedRadioButtonText(radioButtonGroup));
     }
 
-    public String getTextFieldValues() {
-        return keywordsTextField.getText();
-    }
-
-    }
+}
 

@@ -11,6 +11,7 @@ import java.io.FileReader;
 public class FetchData {
     private final String baseUrl = "https://newsapi.org/v2/everything?";
     private final String keywords = "q=";
+    private final String title = "qlnTitle";
     private final String dateFrom = "from=";
     private final String dateTo = "to=";
     private final String sortBy = "sortBY=";
@@ -38,8 +39,11 @@ public class FetchData {
 
     public void FetchNews(NewsApiModel newsApiModel){
         String urlToSearch = baseUrl + keywords + newsApiModel.getProvidedKeyword() + "&"
+                + title + newsApiModel.getProvidedTitle() + "&"
+                + domains + newsApiModel.getProvidedDomain() + "&"
                 + dateFrom + newsApiModel.getProvidedDateFrom() + "&"
                 + dateTo + newsApiModel.getProvidedDateTo() + "&"
+                + sortBy + newsApiModel.getProvidedSortBy() + "&"
                 + "apiKey=" + getApiKey();
 
         HttpResponse<JsonNode> httpResponse = Unirest.get(urlToSearch)

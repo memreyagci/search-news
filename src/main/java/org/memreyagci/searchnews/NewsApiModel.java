@@ -3,14 +3,13 @@ package org.memreyagci.searchnews;
 public class NewsApiModel {
 
     private String providedKeyword;
+    private String providedTitle;
     private String providedDateFrom;
     private String providedDateTo;
     private String providedSortBy;
     private String providedDomain;
     private String providedLanguage;
-
     private String sortByOptions;
-    private boolean titleOnly;
 
     // Options: "relevancy", "popularity", "publishedAt". Default is: "relevancy"
     public void setSortByOptions(String sortByOptions) {
@@ -65,12 +64,12 @@ public class NewsApiModel {
         this.providedLanguage = providedLanguage;
     }
 
-    public boolean isTitleOnly() {
-        return titleOnly;
+    public String getProvidedTitle() {
+        return providedTitle;
     }
 
-    public void setTitleOnly(boolean titleOnly) {
-        this.titleOnly = titleOnly;
+    public void setProvidedTitle(String providedTitle) {
+        this.providedTitle = providedTitle;
     }
 }
 
