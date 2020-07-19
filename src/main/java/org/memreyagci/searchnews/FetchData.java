@@ -11,7 +11,7 @@ import java.io.FileReader;
 public class FetchData {
     private final String baseUrl = "https://newsapi.org/v2/everything?";
     private final String keywords = "q=";
-    private final String title = "qlnTitle";
+    private final String title = "qlnTitle=";
     private final String dateFrom = "from=";
     private final String dateTo = "to=";
     private final String sortBy = "sortBY=";

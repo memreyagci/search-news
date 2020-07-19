@@ -18,7 +18,6 @@ public class SearchPanel extends JPanel {
     GridBagConstraints gbc = new GridBagConstraints();
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-
     // Components of the SearchPanel
     JLabel keywordsLabel = new JLabel("Keywords:");
     JTextField keywordsTextField = new JTextField();
@@ -142,6 +141,5 @@ public class SearchPanel extends JPanel {
         newsApiModel.setProvidedDateTo(simpleDateFormat.format(selectedToDate));
         newsApiModel.setProvidedSortBy(getSelectedRadioButtonText(radioButtonGroup));
     }
-
 }
 
