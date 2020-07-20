@@ -6,11 +6,10 @@ import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.text.SimpleDateFormat;
+import java.util.Enumeration;
 
 public class SearchPanel extends JPanel {
     GridBagConstraints gbc = new GridBagConstraints();
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     // Components of the SearchPanel
     JLabel keywordsLabel;
@@ -75,6 +74,7 @@ public class SearchPanel extends JPanel {
         searchButton = new JButton("SEARCH");
 
         this.setLayout(new GridBagLayout());
+        placeTheComponents();
     }
 
     public JLabel getKeywordsLabel() {
@@ -246,7 +246,7 @@ public class SearchPanel extends JPanel {
     }
 
     // Adding components to the layout and setting their places.
-    public void PlaceTheComponents() {
+    public void placeTheComponents() {
         gbc.insets = new Insets(5, 10, 5, 10);
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -298,39 +298,17 @@ public class SearchPanel extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         this.add(searchButton, gbc);
     }
-//
-//    // Source: https://rendicahya.wordpress.com
-//    String getSelectedRadioButtonText(ButtonGroup buttonGroup) {
-//        for (Enumeration buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
-//            AbstractButton button = (AbstractButton) buttons.nextElement();
-//
-//            if (button.isSelected()) {
-//                return button.getText();
-//            }
-//        }
-//        return null;
-//    }
-//
-//    // Sets ActionListeners
-//    public void SetActionListeners() {
-//        searchButton.addActionListener(e -> {
-//            setNewsApiModel();
-//            fetchData.FetchNews(newsApiModel);
-//        });
-//    }
-//
-//    // Sets NewsApiModel variables
-//    // Being used in FetchNews.fetchData
-//    public void setNewsApiModel() {
-//        Date selectedFromDate = (Date) datesFromJDatePickerImpl.getModel().getValue();
-//        Date selectedToDate = (Date) datesFromJDatePickerImpl.getModel().getValue();
-//
-//        newsApiModel.setProvidedKeyword(keywordsTextField.getText());
-//        newsApiModel.setProvidedTitle(titleTextField.getText());
-//        newsApiModel.setProvidedDomain(domainsTextField.getText());
-//        newsApiModel.setProvidedDateFrom(simpleDateFormat.format(selectedFromDate));
-//        newsApiModel.setProvidedDateTo(simpleDateFormat.format(selectedToDate));
-//        newsApiModel.setProvidedSortBy(getSelectedRadioButtonText(radioButtonGroup));
-//    }
+
+    // Source: https://rendicahya.wordpress.com
+    public String getSelectedRadioButtonText(ButtonGroup buttonGroup) {
+        for (Enumeration buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = (AbstractButton) buttons.nextElement();
+
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+        return null;
+    }
 }
 
