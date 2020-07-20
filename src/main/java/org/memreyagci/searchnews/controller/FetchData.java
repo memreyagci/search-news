@@ -1,8 +1,9 @@
-package org.memreyagci.searchnews;
+package org.memreyagci.searchnews.controller;
 
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
+import org.memreyagci.searchnews.model.NewsApi;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -37,13 +38,13 @@ public class FetchData {
         return apiKey;
     }
 
-    public void FetchNews(NewsApiModel newsApiModel){
-        String urlToSearch = baseUrl + keywords + newsApiModel.getProvidedKeyword() + "&"
-                + title + newsApiModel.getProvidedTitle() + "&"
-                + domains + newsApiModel.getProvidedDomain() + "&"
-                + dateFrom + newsApiModel.getProvidedDateFrom() + "&"
-                + dateTo + newsApiModel.getProvidedDateTo() + "&"
-                + sortBy + newsApiModel.getProvidedSortBy() + "&"
+    public void FetchNews(NewsApi newsApi){
+        String urlToSearch = baseUrl + keywords + newsApi.getProvidedKeyword() + "&"
+                + title + newsApi.getProvidedTitle() + "&"
+                + domains + newsApi.getProvidedDomain() + "&"
+                + dateFrom + newsApi.getProvidedDateFrom() + "&"
+                + dateTo + newsApi.getProvidedDateTo() + "&"
+                + sortBy + newsApi.getProvidedSortBy() + "&"
                 + "apiKey=" + getApiKey();
 
         HttpResponse<JsonNode> httpResponse = Unirest.get(urlToSearch)

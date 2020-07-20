@@ -1,4 +1,4 @@
-package org.memreyagci.searchnews;
+package org.memreyagci.searchnews.controller;
 
 import org.memreyagci.searchnews.UserInterface.MainFrame;
 

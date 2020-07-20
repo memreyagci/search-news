@@ -1,4 +1,4 @@
-package org.memreyagci.searchnews.UserInterface;
+package org.memreyagci.searchnews.view;
 
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
@@ -7,8 +7,6 @@ import net.sourceforge.jdatepicker.impl.UtilDateModel;
 import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Enumeration;
 
 public class SearchPanel extends JPanel {
     GridBagConstraints gbc = new GridBagConstraints();

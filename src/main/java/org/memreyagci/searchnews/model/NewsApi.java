@@ -1,6 +1,6 @@
-package org.memreyagci.searchnews;
+package org.memreyagci.searchnews.model;
 
-public class NewsApiModel {
+public class NewsApi {
 
     private String providedKeyword;
     private String providedTitle;

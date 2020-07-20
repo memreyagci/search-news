@@ -1,6 +1,6 @@
 package org.memreyagci.searchnews;
 
-import org.memreyagci.searchnews.UserInterface.MainFrame;
+import org.memreyagci.searchnews.view.MainFrame;
 
 public class Main {
 

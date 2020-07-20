@@ -1,4 +1,4 @@
-package org.memreyagci.searchnews.UserInterface;
+package org.memreyagci.searchnews.view;
 
 import javax.swing.*;
 import java.awt.*;
