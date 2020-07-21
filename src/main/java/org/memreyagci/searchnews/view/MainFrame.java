@@ -21,6 +21,7 @@ public class MainFrame extends JFrame {
         jSplitPane.setEnabled(false);
 
         this.add(jSplitPane);
+        this.add(new JScrollPane(searchPanel));
 
         this.setVisible(true);
     }
