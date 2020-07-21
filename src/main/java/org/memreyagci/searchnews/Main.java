@@ -1,6 +1,6 @@
 package org.memreyagci.searchnews;
 
-import org.memreyagci.searchnews.controller.SearchPanelController;
+import org.memreyagci.searchnews.controller.NewsApiController;
 import org.memreyagci.searchnews.model.NewsApi;
 import org.memreyagci.searchnews.view.MainFrame;
 
@@ -14,7 +14,7 @@ public class Main {
         NewsApi newsApi = new NewsApi();
 
         //Controller
-        SearchPanelController searchPanelController = new SearchPanelController(mainFrame.getSearchPanel(), newsApi);
-        searchPanelController.initController();
+        NewsApiController newsApiController = new NewsApiController(mainFrame.getSearchPanel(), newsApi);
+        newsApiController.initController();
     }
 }

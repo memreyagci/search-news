@@ -6,13 +6,13 @@ import org.memreyagci.searchnews.view.SearchPanel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SearchPanelController {
+public class NewsApiController {
     private SearchPanel searchPanel;
     private NewsApi newsApi;
     private FetchData fetchData = new FetchData();
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public SearchPanelController(SearchPanel searchPanel, NewsApi newsApi) {
+    public NewsApiController(SearchPanel searchPanel, NewsApi newsApi) {
         this.searchPanel = searchPanel;
         this.newsApi = newsApi;
     }
