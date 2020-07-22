@@ -3,30 +3,27 @@ package org.memreyagci.searchnews.view;
 import org.memreyagci.searchnews.model.SearchResults;
 
 import javax.swing.*;
-import java.awt.*;
 
-// Result renderer.
+/*
+Shows user the search results, each of which is rendered by ResultRenderer.
+ */
 
-public class ResultsPanel extends JPanel implements ListCellRenderer<SearchResults> {
+public class ResultsPanel extends JPanel {
+    private JList<SearchResults> searchResultsJList;
+    private DefaultListModel<SearchResults> defaultListModel = new DefaultListModel<>();
 
-    private JLabel title = new JLabel();
-    private JLabel source = new JLabel();
-    private JLabel date = new JLabel();
+    private JList<SearchResults> createResultsList() {
+        searchResultsJList = new JList<SearchResults>(defaultListModel);
+        searchResultsJList.setCellRenderer(new ResultRenderer());
 
-    public ResultsPanel() {
-
-        JPanel newsPanel = new JPanel();
-        newsPanel.add(title);
-        newsPanel.add(source);
-        newsPanel.add(date);
+        return searchResultsJList;
     }
 
-    @Override
-    public Component getListCellRendererComponent(JList<? extends SearchResults> list, SearchResults searchResults, int index, boolean isSelected, boolean cellHasFocus) {
-        title.setText(searchResults.getTitle());
-        source.setText(searchResults.getSource());
-        date.setText(searchResults.getSource());
+    public DefaultListModel<SearchResults> getDefaultListModel() {
+        return defaultListModel;
+    }
 
-        return this;
+    public void setDefaultListModel(DefaultListModel<SearchResults> defaultListModel) {
+        this.defaultListModel = defaultListModel;
     }
 }
