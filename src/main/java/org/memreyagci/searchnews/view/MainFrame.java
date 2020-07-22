@@ -15,13 +15,10 @@ public class MainFrame extends JFrame {
         this.setLocationRelativeTo(null);
 
         // Adding JPanels to JSplitPane
-        JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-        jSplitPane.add(searchPanel);
-        jSplitPane.add(new JScrollPane(resultsPanel.getSearchResultsJList()));
+        JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, searchPanel, new JScrollPane(resultsPanel.getSearchResultsJList()));
         jSplitPane.setEnabled(false);
 
         this.add(jSplitPane);
-
         this.setVisible(true);
     }
 

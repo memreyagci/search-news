@@ -3,11 +3,6 @@ package org.memreyagci.searchnews.controller;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
-import org.memreyagci.searchnews.model.NewsApi;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 
 public class FetchData {
 
