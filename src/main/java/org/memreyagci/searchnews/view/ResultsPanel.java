@@ -12,10 +12,18 @@ public class ResultsPanel extends JPanel {
     private JList<SearchResults> searchResultsJList;
     private DefaultListModel<SearchResults> defaultListModel = new DefaultListModel<>();
 
+    public ResultsPanel() {
+        createResultsList();
+    }
+
     private JList<SearchResults> createResultsList() {
         searchResultsJList = new JList<SearchResults>(defaultListModel);
         searchResultsJList.setCellRenderer(new ResultRenderer());
 
+        return searchResultsJList;
+    }
+
+    public JList<SearchResults> getSearchResultsJList() {
         return searchResultsJList;
     }
 

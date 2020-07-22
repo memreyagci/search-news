@@ -17,11 +17,10 @@ public class MainFrame extends JFrame {
         // Adding JPanels to JSplitPane
         JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         jSplitPane.add(searchPanel);
-        jSplitPane.add(resultsPanel);
+        jSplitPane.add(new JScrollPane(resultsPanel.getSearchResultsJList()));
         jSplitPane.setEnabled(false);
 
         this.add(jSplitPane);
-        this.add(new JScrollPane(searchPanel));
 
         this.setVisible(true);
     }
