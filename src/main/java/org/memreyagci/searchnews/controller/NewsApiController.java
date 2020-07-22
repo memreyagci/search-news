@@ -19,7 +19,6 @@ public class NewsApiController {
 
     public void initController() {
         searchPanel.getSearchButton().addActionListener(e -> {
-            System.out.println("Clicked!");
             saveNewsApi(); //Saving the model
             GenerateUrl generateUrl = new GenerateUrl();
             fetchData.fetchNews(generateUrl.getUrl(newsApi));
