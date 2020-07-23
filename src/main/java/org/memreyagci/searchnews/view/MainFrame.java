@@ -11,7 +11,7 @@ public class MainFrame extends JFrame {
     public MainFrame(String title) throws HeadlessException {
         super(title);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(1000,650);
+        this.setSize(1300,650);
         this.setLocationRelativeTo(null);
 
         // Adding JPanels to JSplitPane
