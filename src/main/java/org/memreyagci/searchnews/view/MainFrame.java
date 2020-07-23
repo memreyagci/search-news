@@ -25,4 +25,8 @@ public class MainFrame extends JFrame {
     public SearchPanel getSearchPanel() {
         return searchPanel;
     }
+
+    public ResultsPanel getResultsPanel() {
+        return resultsPanel;
+    }
 }
