@@ -10,13 +10,6 @@ public class SearchResults {
     private String date;
     private String url;
 
-    public SearchResults(String title, String source, String date, String url) {
-        this.title = title;
-        this.source = source;
-        this.date = date;
-        this.url = url;
-    }
-
     public String getTitle() {
         return title;
     }
