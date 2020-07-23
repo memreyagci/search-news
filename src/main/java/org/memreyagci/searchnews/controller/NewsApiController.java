@@ -1,6 +1,7 @@
 package org.memreyagci.searchnews.controller;
 
 import org.memreyagci.searchnews.model.NewsApi;
+import org.memreyagci.searchnews.view.ResultsPanel;
 import org.memreyagci.searchnews.view.SearchPanel;
 
 import java.text.SimpleDateFormat;
@@ -8,6 +9,7 @@ import java.util.Date;
 
 public class NewsApiController {
     private SearchPanel searchPanel;
+    private SearchResultsController searchResultsController;
     private NewsApi newsApi;
     private FetchData fetchData = new FetchData();
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -21,7 +23,9 @@ public class NewsApiController {
         searchPanel.getSearchButton().addActionListener(e -> {
             saveNewsApi(); //Saving the model
             GenerateUrl generateUrl = new GenerateUrl();
-            fetchData.fetchNews(generateUrl.getUrl(newsApi));
+
+            // Setting the fetched JSONObject to SearchResultController.results
+            searchResultsController.setResults(fetchData.fetchNews(generateUrl.getUrl(newsApi)));
         });
     }
 
