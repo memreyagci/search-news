@@ -1,8 +1,8 @@
 package org.memreyagci.searchnews;
 
-import org.memreyagci.searchnews.controller.NewsApiController;
+import org.memreyagci.searchnews.newsapi.NewsApiController;
 import org.memreyagci.searchnews.controller.SearchResultsController;
-import org.memreyagci.searchnews.model.NewsApi;
+import org.memreyagci.searchnews.newsapi.NewsApi;
 import org.memreyagci.searchnews.model.SearchResults;
 import org.memreyagci.searchnews.view.MainFrame;
 
