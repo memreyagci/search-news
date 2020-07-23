@@ -1,12 +1,10 @@
-package org.memreyagci.searchnews.controller;
-
-import org.memreyagci.searchnews.model.NewsApi;
+package org.memreyagci.searchnews.newsapi;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-public class GenerateUrl {
+public class NewsApiUrl {
     private final String baseUrl = "https://newsapi.org/v2/everything?";
     private final String keywords = "q=";
     private final String title = "qlnTitle=";

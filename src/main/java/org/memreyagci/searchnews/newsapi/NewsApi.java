@@ -1,4 +1,4 @@
-package org.memreyagci.searchnews.model;
+package org.memreyagci.searchnews.newsapi;
 
 public class NewsApi {
 

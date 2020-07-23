@@ -1,7 +1,7 @@
-package org.memreyagci.searchnews.controller;
+package org.memreyagci.searchnews.newsapi;
 
 import kong.unirest.json.JSONArray;
-import org.memreyagci.searchnews.model.NewsApi;
+import org.memreyagci.searchnews.controller.SearchResultsController;
 import org.memreyagci.searchnews.model.SearchResults;
 import org.memreyagci.searchnews.view.ResultsPanel;
 import org.memreyagci.searchnews.view.SearchPanel;
@@ -18,7 +18,7 @@ public class NewsApiController {
     private NewsApi newsApi;
     private SearchResults searchResults;
 
-    private FetchData fetchData = new FetchData();
+    private NewsApiCall newsApiCall = new NewsApiCall();
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public NewsApiController(SearchPanel searchPanel, ResultsPanel resultsPanel, NewsApi newsApi, SearchResults searchResults, SearchResultsController searchResultsController) {
@@ -32,10 +32,10 @@ public class NewsApiController {
     public void initController() {
         searchPanel.getSearchButton().addActionListener(e -> {
             saveNewsApi(); //Saving the model
-            GenerateUrl generateUrl = new GenerateUrl();
+            NewsApiUrl newsApiUrl = new NewsApiUrl();
 
             // Setting the fetched JSONObject to SearchResultController.results
-            searchResultsController.setResults(fetchData.fetchNews(generateUrl.getUrl(newsApi)));
+            searchResultsController.setResults(newsApiCall.fetchNews(newsApiUrl.getUrl(newsApi)));
 
             createRendererModel();
         });
