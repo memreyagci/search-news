@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class NewsApiController {
+
     private SearchPanel searchPanel;
     private ResultsPanel resultsPanel;
 
@@ -19,6 +20,7 @@ public class NewsApiController {
     private SearchResults searchResults;
 
     private NewsApiCall newsApiCall = new NewsApiCall();
+
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public NewsApiController(SearchPanel searchPanel, ResultsPanel resultsPanel, NewsApi newsApi, SearchResults searchResults, SearchResultsController searchResultsController) {
@@ -38,6 +40,7 @@ public class NewsApiController {
             searchResultsController.setResults(newsApiCall.fetchNews(newsApiUrl.getUrl(newsApi)));
 
             createRendererModel();
+            resultsPanel.createResultsList();
         });
     }
 
@@ -57,6 +60,7 @@ public class NewsApiController {
         JSONArray articles = searchResultsController.getResults().getJSONArray("articles");
 
         for(int i=0; i<articles.length(); i++) {
+            SearchResults searchResults = new SearchResults();
             searchResults.setTitle(articles.getJSONObject(i).getString("title"));
             searchResults.setSource(articles.getJSONObject(i).getJSONObject("source").getString("name"));
             searchResults.setDate(articles.getJSONObject(i).getString("publishedAt"));
