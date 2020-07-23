@@ -6,6 +6,7 @@ import org.memreyagci.searchnews.model.SearchResults;
 import org.memreyagci.searchnews.view.ResultsPanel;
 import org.memreyagci.searchnews.view.SearchPanel;
 
+import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -33,6 +34,9 @@ public class NewsApiController {
 
     public void initController() {
         searchPanel.getSearchButton().addActionListener(e -> {
+            // Removing all elements from ResultsPanel.DefaultListModel to prevent adding a new search's results to the bottom of the old one(s).
+            resultsPanel.getDefaultListModel().removeAllElements();
+
             saveNewsApi(); //Saving the model
             NewsApiUrl newsApiUrl = new NewsApiUrl();
 
