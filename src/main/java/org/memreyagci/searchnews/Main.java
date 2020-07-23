@@ -1,7 +1,9 @@
 package org.memreyagci.searchnews;
 
 import org.memreyagci.searchnews.controller.NewsApiController;
+import org.memreyagci.searchnews.controller.SearchResultsController;
 import org.memreyagci.searchnews.model.NewsApi;
+import org.memreyagci.searchnews.model.SearchResults;
 import org.memreyagci.searchnews.view.MainFrame;
 
 public class Main {
@@ -12,9 +14,11 @@ public class Main {
 
         // Model
         NewsApi newsApi = new NewsApi();
+        SearchResults searchResults = new SearchResults();
 
         //Controller
-        NewsApiController newsApiController = new NewsApiController(mainFrame.getSearchPanel(), newsApi);
+        SearchResultsController searchResultsController = new SearchResultsController();
+        NewsApiController newsApiController = new NewsApiController(mainFrame.getSearchPanel(), mainFrame.getResultsPanel(), newsApi, searchResults, searchResultsController);
         newsApiController.initController();
     }
 }
