@@ -42,6 +42,8 @@ public class ResultRenderer extends JPanel implements ListCellRenderer<SearchRes
         date.setText("on " + searchResults.getDate());
         url = searchResults.getUrl();
 
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
         if(isSelected) {
             this.setBackground(list.getSelectionBackground());
         } else {
