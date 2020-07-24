@@ -40,6 +40,12 @@ public class ResultRenderer extends JPanel implements ListCellRenderer<SearchRes
         source.setText("by " + searchResults.getSource());
         date.setText("on " + searchResults.getDate());
 
+        if(isSelected) {
+            this.setBackground(list.getSelectionBackground());
+        } else {
+            this.setBackground(list.getBackground());
+        }
+
         return this;
     }
 }
