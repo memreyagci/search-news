@@ -6,7 +6,6 @@ import org.memreyagci.searchnews.model.SearchResults;
 import org.memreyagci.searchnews.view.ResultsPanel;
 import org.memreyagci.searchnews.view.SearchPanel;
 
-import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -46,6 +45,15 @@ public class NewsApiController {
             createRendererModel();
             resultsPanel.createResultsList();
         });
+
+        resultsPanel.getSearchResultsJList().addListSelectionListener(e -> {
+
+            // Ensures that this will only run when on the final event on the chain, which is mouseUp. Thus, prevents it from running also for other events.
+            if (e.getValueIsAdjusting()) {
+                // TODO: Create necessary functions to display a dialog that asks user whether he wants to open the link in the browser.
+            }
+
+        });
     }
 
     private void saveNewsApi() {
@@ -68,6 +76,7 @@ public class NewsApiController {
             searchResults.setTitle(articles.getJSONObject(i).getString("title"));
             searchResults.setSource(articles.getJSONObject(i).getJSONObject("source").getString("name"));
             searchResults.setDate(articles.getJSONObject(i).getString("publishedAt"));
+            searchResults.setUrl(articles.getJSONObject(i).getString("url"));
 
             resultsPanel.getDefaultListModel().addElement(searchResults);
         }

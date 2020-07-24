@@ -16,6 +16,7 @@ public class ResultRenderer extends JPanel implements ListCellRenderer<SearchRes
     private JLabel title = new JLabel();
     private JLabel source = new JLabel();
     private JLabel date = new JLabel();
+    private String url;
 
 
     public ResultRenderer() {
@@ -39,6 +40,7 @@ public class ResultRenderer extends JPanel implements ListCellRenderer<SearchRes
         title.setText(searchResults.getTitle());
         source.setText("by " + searchResults.getSource());
         date.setText("on " + searchResults.getDate());
+        url = searchResults.getUrl();
 
         if(isSelected) {
             this.setBackground(list.getSelectionBackground());
