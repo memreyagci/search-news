@@ -45,17 +45,10 @@ public class NewsApiController {
             createRendererModel();
             resultsPanel.createResultsList();
         });
-
-        resultsPanel.getSearchResultsJList().addListSelectionListener(e -> {
-
-            // Ensures that this will only run when on the final event on the chain, which is mouseUp. Thus, prevents it from running also for other events.
-            if (e.getValueIsAdjusting()) {
-                // TODO: Create necessary functions to display a dialog that asks user whether he wants to open the link in the browser.
-            }
-
-        });
     }
 
+    // Setting user input to NewsApi model.
+    // TODO: Add the languages field.
     private void saveNewsApi() {
         Date selectedFromDate = (Date) searchPanel.getDatesFromJDatePanelImpl().getModel().getValue();
         Date selectedToDate = (Date) searchPanel.getDatesFromJDatePanelImpl().getModel().getValue();
@@ -68,6 +61,7 @@ public class NewsApiController {
         newsApi.setProvidedSortBy(searchPanel.getSelectedRadioButtonText(searchPanel.getRadioButtonGroup()));
     }
 
+    // Adding fetched news to ResultsPanel.defaultListModel.
     private void createRendererModel() {
         JSONArray articles = searchResultsController.getResults().getJSONArray("articles");
 

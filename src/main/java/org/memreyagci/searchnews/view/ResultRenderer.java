@@ -45,7 +45,21 @@ public class ResultRenderer extends JPanel implements ListCellRenderer<SearchRes
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         if(isSelected) {
+
+            /*
+            TODO: For some reason, JOptionPane keeps popping up when it is run after list.clearSelection().
+                Thus, I have to save index to a variable before running that function, then clear the selection,
+                then create JOptionPane. Change this if you find a proper way to solve this. I will use this workaround
+                for now since I have been trying to make the list selection work for about a day, and this is the best
+                I could come up with.
+             */
+            if (!list.getValueIsAdjusting()) {
+                int selectedIndex = list.getSelectedIndex();
+                list.clearSelection();
+                // TODO: Initialize a JOptionPane
+            }
             this.setBackground(list.getSelectionBackground());
+
         } else {
             this.setBackground(list.getBackground());
         }
