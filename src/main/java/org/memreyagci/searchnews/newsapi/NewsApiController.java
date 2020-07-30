@@ -6,6 +6,7 @@ import org.memreyagci.searchnews.model.SearchResults;
 import org.memreyagci.searchnews.view.ResultsPanel;
 import org.memreyagci.searchnews.view.SearchPanel;
 
+import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,17 +32,39 @@ public class NewsApiController {
         this.searchResultsController = searchResultsController;
     }
 
+    // Initializes the listeners.
     public void initController() {
         searchPanel.getSearchButton().addActionListener(e -> {
-            // Removing all elements from ResultsPanel.DefaultListModel to prevent adding a new search's results to the bottom of the old one(s).
-            resultsPanel.getDefaultListModel().removeAllElements();
+            Thread apiCallThread = new Thread() {
+                @Override
+                public void run() {
+                    makeApiCall();
+                }
+            };
+            apiCallThread.start();
+        });
+    }
 
-            saveNewsApi(); //Saving the model
-            NewsApiUrl newsApiUrl = new NewsApiUrl();
+    /*
+     * This method is run when the search button is clicked.
+     * It gets the user input, makes the api call, and updates the ResultPanel
+     */
+    public void makeApiCall() {
+        // Removing all elements from ResultsPanel.DefaultListModel to prevent adding a new search's results to the bottom of the old one(s).
+        resultsPanel.getDefaultListModel().removeAllElements();
 
-            // Setting the fetched JSONObject to SearchResultController.results
-            searchResultsController.setResults(newsApiCall.fetchNews(newsApiUrl.getUrl(newsApi)));
+        saveNewsApi(); // Getting user input and saving it to NewsApi model.
+        NewsApiUrl newsApiUrl = new NewsApiUrl();
 
+        // Setting the fetched JSONObject to SearchResultController.results
+        searchResultsController.setResults(newsApiCall.fetchNews(newsApiUrl.getUrl(newsApi)));
+
+        initializeResultPanel();
+    }
+
+    // Displays news results in ResultsPanel.
+    private void initializeResultPanel() {
+        SwingUtilities.invokeLater(() -> {
             createRendererModel();
             resultsPanel.createResultsList();
         });
