@@ -5,18 +5,18 @@ import java.io.File;
 import java.io.FileReader;
 
 public class NewsApiUrl {
-    private final String baseUrl = "https://newsapi.org/v2/everything?";
-    private final String keywords = "q=";
-    private final String title = "qlnTitle=";
-    private final String dateFrom = "from=";
-    private final String dateTo = "to=";
-    private final String sortBy = "sortBY=";
-    private final String domains = "domains=";
-    private final String languages = "language=";
-    private String apiKey;
-    private String url;
+    private static final String baseUrl = "https://newsapi.org/v2/everything?";
+    private static final String keywords = "q=";
+    private static final String title = "qlnTitle=";
+    private static final String dateFrom = "from=";
+    private static final String dateTo = "to=";
+    private static final String sortBy = "sortBY=";
+    private static final String domains = "domains=";
+    private static final String languages = "language=";
+    private static String apiKey;
+    private static String url;
 
-    public String getUrl(NewsApi newsApi) {
+    public static String getUrl(NewsApi newsApi) {
         url = baseUrl + keywords + newsApi.getProvidedKeyword() + "&"
                 + title + newsApi.getProvidedTitle() + "&"
                 + domains + newsApi.getProvidedDomain() + "&"
@@ -31,7 +31,7 @@ public class NewsApiUrl {
     }
 
     // TODO : Get the api key from user when the application is first run.
-    private String getApiKey() {
+    private static String getApiKey() {
         File apiKeyFile = new File(System.getProperty("user.dir") + "/src/main/java/org/memreyagci/searchnews/IgnoreThis/api_key.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(apiKeyFile));

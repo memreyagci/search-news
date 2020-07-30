@@ -54,10 +54,9 @@ public class NewsApiController {
         resultsPanel.getDefaultListModel().removeAllElements();
 
         saveNewsApi(); // Getting user input and saving it to NewsApi model.
-        NewsApiUrl newsApiUrl = new NewsApiUrl();
 
         // Setting the fetched JSONObject to SearchResultController.results
-        searchResultsController.setResults(newsApiCall.fetchNews(newsApiUrl.getUrl(newsApi)));
+        searchResultsController.setResults(newsApiCall.fetchNews(NewsApiUrl.getUrl(newsApi)));
 
         initializeResultPanel();
     }
