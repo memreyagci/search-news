@@ -4,22 +4,29 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
-    // Initializing JPanels
-    SearchPanel searchPanel = new SearchPanel();
-    ResultsPanel resultsPanel = new ResultsPanel();
 
-    public MainFrame(String title) throws HeadlessException {
-        super(title);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(1300,650);
-        this.setLocationRelativeTo(null);
+    SearchPanel searchPanel;
+    ResultsPanel resultsPanel;
 
-        // Adding JPanels to JSplitPane
-        JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, searchPanel, new JScrollPane(resultsPanel.getSearchResultsJList()));
-        jSplitPane.setEnabled(false);
+    public MainFrame() throws HeadlessException {
 
-        this.add(jSplitPane);
-        this.setVisible(true);
+        SwingUtilities.invokeLater(() -> {
+            setTitle("Search News");
+            setDefaultCloseOperation(EXIT_ON_CLOSE);
+            setSize(1300,650);
+            setLocationRelativeTo(null);
+
+            // Initializing JPanels
+            searchPanel = new SearchPanel();
+            resultsPanel = new ResultsPanel();
+
+            // Adding JPanels to JSplitPane
+            JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, searchPanel, new JScrollPane(resultsPanel.getSearchResultsJList()));
+            jSplitPane.setEnabled(false);
+            add(jSplitPane);
+
+            setVisible(true);
+        });
     }
 
     public SearchPanel getSearchPanel() {

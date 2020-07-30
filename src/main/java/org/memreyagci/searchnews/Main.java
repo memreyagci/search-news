@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         // View
-        MainFrame mainFrame = new MainFrame("Search News");
+        MainFrame mainFrame = new MainFrame();
 
         // Model
         NewsApi newsApi = new NewsApi();
