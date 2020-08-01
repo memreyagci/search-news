@@ -77,172 +77,8 @@ public class SearchPanel extends JPanel {
         placeTheComponents();
     }
 
-    public JLabel getKeywordsLabel() {
-        return keywordsLabel;
-    }
-
-    public void setKeywordsLabel(JLabel keywordsLabel) {
-        this.keywordsLabel = keywordsLabel;
-    }
-
-    public JTextField getKeywordsTextField() {
-        return keywordsTextField;
-    }
-
-    public void setKeywordsTextField(JTextField keywordsTextField) {
-        this.keywordsTextField = keywordsTextField;
-    }
-
-    public JLabel getTitleLabel() {
-        return titleLabel;
-    }
-
-    public void setTitleLabel(JLabel titleLabel) {
-        this.titleLabel = titleLabel;
-    }
-
-    public JTextField getTitleTextField() {
-        return titleTextField;
-    }
-
-    public void setTitleTextField(JTextField titleTextField) {
-        this.titleTextField = titleTextField;
-    }
-
-    public JLabel getDomainsLabel() {
-        return domainsLabel;
-    }
-
-    public void setDomainsLabel(JLabel domainsLabel) {
-        this.domainsLabel = domainsLabel;
-    }
-
-    public JTextField getDomainsTextField() {
-        return domainsTextField;
-    }
-
-    public void setDomainsTextField(JTextField domainsTextField) {
-        this.domainsTextField = domainsTextField;
-    }
-
-    public JLabel getLanguagesLabel() {
-        return languagesLabel;
-    }
-
-    public void setLanguagesLabel(JLabel languagesLabel) {
-        this.languagesLabel = languagesLabel;
-    }
-
-    public JTextField getLanguagesTextField() {
-        return languagesTextField;
-    }
-
-    public void setLanguagesTextField(JTextField languagesTextField) {
-        this.languagesTextField = languagesTextField;
-    }
-
-    public JLabel getDatesFromLabel() {
-        return datesFromLabel;
-    }
-
-    public void setDatesFromLabel(JLabel datesFromLabel) {
-        this.datesFromLabel = datesFromLabel;
-    }
-
-    public JDatePanelImpl getDatesFromJDatePanelImpl() {
-        return datesFromJDatePanelImpl;
-    }
-
-    public void setDatesFromJDatePanelImpl(JDatePanelImpl datesFromJDatePanelImpl) {
-        this.datesFromJDatePanelImpl = datesFromJDatePanelImpl;
-    }
-
-    public JDatePickerImpl getDatesFromJDatePickerImpl() {
-        return datesFromJDatePickerImpl;
-    }
-
-    public void setDatesFromJDatePickerImpl(JDatePickerImpl datesFromJDatePickerImpl) {
-        this.datesFromJDatePickerImpl = datesFromJDatePickerImpl;
-    }
-
-    public JLabel getDatesToLabel() {
-        return datesToLabel;
-    }
-
-    public void setDatesToLabel(JLabel datesToLabel) {
-        this.datesToLabel = datesToLabel;
-    }
-
-    public JDatePanelImpl getDatesToJDatePanelImpl() {
-        return datesToJDatePanelImpl;
-    }
-
-    public void setDatesToJDatePanelImpl(JDatePanelImpl datesToJDatePanelImpl) {
-        this.datesToJDatePanelImpl = datesToJDatePanelImpl;
-    }
-
-    public JDatePickerImpl getDatesToDatePicker() {
-        return datesToDatePicker;
-    }
-
-    public void setDatesToDatePicker(JDatePickerImpl datesToDatePicker) {
-        this.datesToDatePicker = datesToDatePicker;
-    }
-
-    public JLabel getSortByLabel() {
-        return sortByLabel;
-    }
-
-    public void setSortByLabel(JLabel sortByLabel) {
-        this.sortByLabel = sortByLabel;
-    }
-
-    public JPanel getRadioButtonJPanel() {
-        return radioButtonJPanel;
-    }
-
-    public void setRadioButtonJPanel(JPanel radioButtonJPanel) {
-        this.radioButtonJPanel = radioButtonJPanel;
-    }
-
-    public ButtonGroup getRadioButtonGroup() {
-        return radioButtonGroup;
-    }
-
-    public void setRadioButtonGroup(ButtonGroup radioButtonGroup) {
-        this.radioButtonGroup = radioButtonGroup;
-    }
-
-    public JRadioButton getSortByRelevancyRadioButton() {
-        return sortByRelevancyRadioButton;
-    }
-
-    public void setSortByRelevancyRadioButton(JRadioButton sortByRelevancyRadioButton) {
-        this.sortByRelevancyRadioButton = sortByRelevancyRadioButton;
-    }
-
-    public JRadioButton getSortByPopularityRadioButton() {
-        return sortByPopularityRadioButton;
-    }
-
-    public void setSortByPopularityRadioButton(JRadioButton sortByPopularityRadioButton) {
-        this.sortByPopularityRadioButton = sortByPopularityRadioButton;
-    }
-
-    public JRadioButton getSortByPublishDateRadioButton() {
-        return sortByPublishDateRadioButton;
-    }
-
-    public void setSortByPublishDateRadioButton(JRadioButton sortByPublishDateRadioButton) {
-        this.sortByPublishDateRadioButton = sortByPublishDateRadioButton;
-    }
-
     public JButton getSearchButton() {
         return searchButton;
-    }
-
-    public void setSearchButton(JButton searchButton) {
-        this.searchButton = searchButton;
     }
 
     // Adding components to the layout and setting their places.
@@ -309,6 +145,29 @@ public class SearchPanel extends JPanel {
             }
         }
         return null;
+    }
+
+
+    // Getters & setters
+
+    public JTextField getKeywordsTextField() {
+        return keywordsTextField;
+    }
+
+    public JTextField getTitleTextField() {
+        return titleTextField;
+    }
+
+    public JTextField getDomainsTextField() {
+        return domainsTextField;
+    }
+
+    public JDatePanelImpl getDatesFromJDatePanelImpl() {
+        return datesFromJDatePanelImpl;
+    }
+
+    public ButtonGroup getRadioButtonGroup() {
+        return radioButtonGroup;
     }
 }
 
