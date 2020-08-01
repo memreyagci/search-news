@@ -7,8 +7,11 @@ import org.memreyagci.searchnews.view.ResultsPanel;
 import org.memreyagci.searchnews.view.SearchPanel;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 public class NewsApiController {
 
@@ -35,13 +38,9 @@ public class NewsApiController {
     // Initializes the listeners.
     public void initController() {
         searchPanel.getSearchButton().addActionListener(e -> {
-            Thread apiCallThread = new Thread() {
-                @Override
-                public void run() {
-                    makeApiCall();
-                }
-            };
-            apiCallThread.start();
+            makeApiCall().execute();
+            System.out.println("Running..");
+
         });
     }
 
@@ -49,24 +48,31 @@ public class NewsApiController {
      * This method is run when the search button is clicked.
      * It gets the user input, makes the api call, and updates the ResultPanel
      */
-    public void makeApiCall() {
-        // Removing all elements from ResultsPanel.DefaultListModel to prevent adding a new search's results to the bottom of the old one(s).
-        resultsPanel.getDefaultListModel().removeAllElements();
+    public SwingWorker makeApiCall() {
+        SwingWorker<Void, Void> apiCallWorker = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() {
+                // Removing all elements from ResultsPanel.DefaultListModel to prevent adding a new search's results to the bottom of the old one(s).
+                resultsPanel.getDefaultListModel().removeAllElements();
 
-        saveNewsApi(); // Getting user input and saving it to NewsApi model.
+                saveNewsApi(); // Getting user input and saving it to NewsApi model.
 
-        // Setting the fetched JSONObject to SearchResultController.results
-        searchResultsController.setResults(newsApiCall.fetchNews(NewsApiUrl.getUrl(newsApi)));
+                // Setting the fetched JSONObject to SearchResultController.results
+                searchResultsController.setResults(newsApiCall.fetchNews(NewsApiUrl.getUrl(newsApi)));
 
-        initializeResultPanel();
-    }
+                return null;
+            }
 
-    // Displays news results in ResultsPanel.
-    private void initializeResultPanel() {
-        SwingUtilities.invokeLater(() -> {
-            createRendererModel();
-            resultsPanel.createResultsList();
-        });
+            @Override
+            protected void done() {
+                // Displays news results in ResultsPanel.
+                createRendererModel();
+                resultsPanel.createResultsList();
+                System.out.println("Done");
+            }
+        };
+
+        return apiCallWorker;
     }
 
     // Setting user input to NewsApi model.
