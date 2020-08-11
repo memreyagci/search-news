@@ -8,6 +8,9 @@ public class MainFrame extends JFrame {
     // Initializing JPanels
     SearchPanel searchPanel = new SearchPanel();
     ResultsPanel resultsPanel = new ResultsPanel();
+    LoadingPanel loadingPanel = new LoadingPanel();
+
+    JSplitPane jSplitPane;
 
     public MainFrame() throws HeadlessException {
 
@@ -18,12 +21,20 @@ public class MainFrame extends JFrame {
             setLocationRelativeTo(null);
 
             // Adding JPanels to JSplitPane
-            JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, searchPanel, new JScrollPane(resultsPanel.getSearchResultsJList()));
+            jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, searchPanel, new JScrollPane(resultsPanel.getSearchResultsJList()));
             jSplitPane.setEnabled(false);
             add(jSplitPane);
 
             setVisible(true);
         });
+    }
+
+    public void initializeLoadingPanel() {
+        jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, searchPanel, loadingPanel);
+    }
+
+    public void initializeResultsPanel() {
+        jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, searchPanel, new JScrollPane(resultsPanel.getSearchResultsJList()));
     }
 
     public SearchPanel getSearchPanel() {
