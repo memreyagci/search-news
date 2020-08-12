@@ -3,20 +3,19 @@ package org.memreyagci.searchnews.newsapi;
 import kong.unirest.json.JSONArray;
 import org.memreyagci.searchnews.controller.SearchResultsController;
 import org.memreyagci.searchnews.model.SearchResults;
+import org.memreyagci.searchnews.view.MainFrame;
 import org.memreyagci.searchnews.view.ResultsPanel;
 import org.memreyagci.searchnews.view.SearchPanel;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.ExecutionException;
 
 public class NewsApiController {
 
     private SearchPanel searchPanel;
     private ResultsPanel resultsPanel;
+    private MainFrame mainFrame;
 
     private SearchResultsController searchResultsController;
 
@@ -27,7 +26,8 @@ public class NewsApiController {
 
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public NewsApiController(SearchPanel searchPanel, ResultsPanel resultsPanel, NewsApi newsApi, SearchResults searchResults, SearchResultsController searchResultsController) {
+    public NewsApiController(MainFrame mainFrame, SearchPanel searchPanel, ResultsPanel resultsPanel, NewsApi newsApi, SearchResults searchResults, SearchResultsController searchResultsController) {
+        this.mainFrame = mainFrame;
         this.searchPanel = searchPanel;
         this.resultsPanel = resultsPanel;
         this.newsApi = newsApi;
@@ -39,8 +39,6 @@ public class NewsApiController {
     public void initController() {
         searchPanel.getSearchButton().addActionListener(e -> {
             makeApiCall().execute();
-            System.out.println("Running..");
-
         });
     }
 
@@ -52,6 +50,9 @@ public class NewsApiController {
         SwingWorker<Void, Void> apiCallWorker = new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() {
+                // Showing a "LOADING.." text on the right of the screen.
+                SwingUtilities.invokeLater(() -> mainFrame.initializeLoadingPanel());
+
                 // Removing all elements from ResultsPanel.DefaultListModel to prevent adding a new search's results to the bottom of the old one(s).
                 resultsPanel.getDefaultListModel().removeAllElements();
 
@@ -68,7 +69,9 @@ public class NewsApiController {
                 // Displays news results in ResultsPanel.
                 createRendererModel();
                 resultsPanel.createResultsList();
-                System.out.println("Done");
+
+                // Showing the results on the right of the screen.
+                SwingUtilities.invokeLater(() -> mainFrame.initializeResultsPanel());
             }
         };
 
