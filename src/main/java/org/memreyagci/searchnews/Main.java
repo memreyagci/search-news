@@ -18,7 +18,7 @@ public class Main {
 
         //Controller
         SearchResultsController searchResultsController = new SearchResultsController();
-        NewsApiController newsApiController = new NewsApiController(mainFrame.getSearchPanel(), mainFrame.getResultsPanel(), newsApi, searchResults, searchResultsController);
+        NewsApiController newsApiController = new NewsApiController(mainFrame, mainFrame.getSearchPanel(), mainFrame.getResultsPanel(), newsApi, searchResults, searchResultsController);
         newsApiController.initController();
     }
 }
