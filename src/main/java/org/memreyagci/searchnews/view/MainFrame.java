@@ -8,7 +8,6 @@ public class MainFrame extends JFrame {
     // Initializing JPanels
     SearchPanel searchPanel = new SearchPanel();
     ResultsPanel resultsPanel = new ResultsPanel();
-    LoadingPanel loadingPanel = new LoadingPanel();
 
     JSplitPane jSplitPane;
 
@@ -23,18 +22,20 @@ public class MainFrame extends JFrame {
             // Adding JPanels to JSplitPane
             jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, searchPanel, new JScrollPane(resultsPanel.getSearchResultsJList()));
             jSplitPane.setEnabled(false);
-            add(jSplitPane);
+            this.add(jSplitPane);
 
             setVisible(true);
         });
     }
 
+    // Shows a "LOADING..." label on the right of the screen when the search button is clicked.
     public void initializeLoadingPanel() {
-        jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, searchPanel, loadingPanel);
+            jSplitPane.setRightComponent(new LoadingPanel());
     }
 
+    // Shows the results on the left when they are obtained.
     public void initializeResultsPanel() {
-        jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, searchPanel, new JScrollPane(resultsPanel.getSearchResultsJList()));
+            jSplitPane.setRightComponent(new JScrollPane(resultsPanel.getSearchResultsJList()));
     }
 
     public SearchPanel getSearchPanel() {
