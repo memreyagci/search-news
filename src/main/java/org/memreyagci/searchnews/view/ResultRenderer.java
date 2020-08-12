@@ -54,9 +54,23 @@ public class ResultRenderer extends JPanel implements ListCellRenderer<SearchRes
                 I could come up with.
              */
             if (!list.getValueIsAdjusting()) {
-                int selectedIndex = list.getSelectedIndex();
+                //int selectedIndex = list.getSelectedIndex();
                 list.clearSelection();
-                // TODO: Initialize a JOptionPane
+
+                SwingUtilities.invokeLater(() -> {
+                    int input =
+                            JOptionPane.showConfirmDialog(
+                                new JFrame(),
+                                "Do you want to open the following link in your browser?\n" + url,
+                                "Open the link in the browser",
+                                JOptionPane.YES_NO_OPTION
+                            );
+
+                    if(input == JOptionPane.YES_OPTION) {
+                        System.out.println("successfull");
+                    }
+                });
+
             }
             this.setBackground(list.getSelectionBackground());
 
