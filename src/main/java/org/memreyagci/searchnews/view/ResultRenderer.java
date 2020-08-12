@@ -5,6 +5,9 @@ import org.memreyagci.searchnews.model.SearchResults;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /*
 A cell renderer for JList whose identifier is SearchResults model.
@@ -44,19 +47,15 @@ public class ResultRenderer extends JPanel implements ListCellRenderer<SearchRes
 
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        // Things to do when of the results is clicked.
         if(isSelected) {
-
-            /*
-            TODO: For some reason, JOptionPane keeps popping up when it is run after list.clearSelection().
-                Thus, I have to save index to a variable before running that function, then clear the selection,
-                then create JOptionPane. Change this if you find a proper way to solve this. I will use this workaround
-                for now since I have been trying to make the list selection work for about a day, and this is the best
-                I could come up with.
-             */
             if (!list.getValueIsAdjusting()) {
-                //int selectedIndex = list.getSelectedIndex();
-                list.clearSelection();
+                list.clearSelection(); // To prevent endless repetitions of the following codes.
 
+                /*
+                Creating a JOptionPane that asks user whether they want to open the link in the browser.
+                The answer is saved to input integer.
+                 */
                 SwingUtilities.invokeLater(() -> {
                     int input =
                             JOptionPane.showConfirmDialog(
@@ -66,8 +65,16 @@ public class ResultRenderer extends JPanel implements ListCellRenderer<SearchRes
                                 JOptionPane.YES_NO_OPTION
                             );
 
+                    // If user clicks yes, open the link the browser.
                     if(input == JOptionPane.YES_OPTION) {
-                        System.out.println("successfull");
+                        Desktop desktop = Desktop.getDesktop();
+                        try {
+                            desktop.browse(new URI(url));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (URISyntaxException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 
