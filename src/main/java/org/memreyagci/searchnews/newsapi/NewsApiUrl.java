@@ -7,7 +7,7 @@ import java.io.FileReader;
 public class NewsApiUrl {
     private static final String baseUrl = "https://newsapi.org/v2/everything?";
     private static final String keywords = "q=";
-    private static final String title = "qlnTitle=";
+    private static final String title = "qInTitle=";
     private static final String dateFrom = "from=";
     private static final String dateTo = "to=";
     private static final String sortBy = "sortBY=";
